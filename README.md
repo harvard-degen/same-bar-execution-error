@@ -1,5 +1,7 @@
 # Same-Bar Execution Error — Replication Package
 
+[![DOI](https://zenodo.org/badge/1430428589.svg)](https://doi.org/10.5281/zenodo.23590933)
+
 Replication code for **"Look-Ahead Bias Has No Deflator: Quantifying the Same-Bar Execution Error in Systematic Backtests"** (R. Chan, SSRN Working Paper No. 7654039, 2026).
 Paper page: <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7654039>
 
@@ -44,6 +46,8 @@ Chan, Ronald (2026). "Look-Ahead Bias Has No Deflator: Quantifying the Same-Bar
 Execution Error in Systematic Backtests." SSRN Working Paper No. 7654039.
 https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7654039 · DOI: 10.2139/ssrn.7654039
 ```
+
+Code (this repository, v1.0.0): [DOI 10.5281/zenodo.23590934](https://doi.org/10.5281/zenodo.23590934) · concept DOI: 10.5281/zenodo.23590933
 
 *Apex Quant Capital is the systematic-trading research brand of Saprolings Pte Ltd, Singapore.*
 
