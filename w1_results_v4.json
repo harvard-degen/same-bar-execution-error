@@ -1,0 +1,635 @@
+{
+ "version": "v4",
+ "generated": "2026-10-19T13:36:48.521040+00:00",
+ "script": "replication/w1_experiment_v4.py",
+ "conventions": {
+  "signal": "mom=c_t/c_{t-M}-1; rolling z, trailing 90 incl current, ddof=1; long z>0.5; warmup flat",
+  "returns": "R_t=o_{t+1}/o_t-1; rho_t=c_t/c_{t-1}-1; iota_t=c_t/o_t-1",
+  "cost": "10bp per unit turnover, additive on first earning bar per arm placement",
+  "stats": "Sharpe sqrt(365.25) all bars incl warmup zeros (equity: sqrt(252)); CAGR calendar; MDD on wealth",
+  "windows": "trigger/corr stats on signal-valid bars t>=109",
+  "bootstrap": "moving-block L=20 B=1000 seed=7 percentile CI"
+ },
+ "btc": {
+  "n_bars": 3336,
+  "first_date": "2017-08-17",
+  "last_date": "2026-10-04",
+  "source": "binance-api",
+  "valid_from_index": 109,
+  "arms": {
+   "A": {
+    "x": 14.41,
+    "cagr_pct": 33.9,
+    "sharpe": 1.01,
+    "maxdd_pct": 44.7
+   },
+   "B": {
+    "x": 10.24,
+    "cagr_pct": 29.0,
+    "sharpe": 0.91,
+    "maxdd_pct": 46.1
+   },
+   "C": {
+    "x": 14.43,
+    "cagr_pct": 33.9,
+    "sharpe": 1.01,
+    "maxdd_pct": 44.7
+   },
+   "D1": {
+    "x": 14.52,
+    "cagr_pct": 34.0,
+    "sharpe": 1.04,
+    "maxdd_pct": 36.7
+   },
+   "D2": {
+    "x": 6.8,
+    "cagr_pct": 23.4,
+    "sharpe": 0.8,
+    "maxdd_pct": 45.7
+   },
+   "F": {
+    "x": 6094.94,
+    "cagr_pct": 159.7,
+    "sharpe": 2.81,
+    "maxdd_pct": 18.9
+   },
+   "G": {
+    "x": 6085.07,
+    "cagr_pct": 159.6,
+    "sharpe": 2.81,
+    "maxdd_pct": 18.9
+   },
+   "BH": {
+    "x": 20.19,
+    "cagr_pct": 39.0,
+    "sharpe": 0.83,
+    "maxdd_pct": 83.2
+   }
+  },
+  "days_long_pct": {
+   "rolling": 30.0,
+   "D1_fullsample": 22.9,
+   "D2_hybrid": 25.1
+  },
+  "flips": {
+   "total": 232,
+   "per_year": 25.4,
+   "entries": 116,
+   "exits": 116
+  },
+  "intra_bp": {
+   "unconditional_valid": 12.3,
+   "entry_days": 339.0,
+   "exit_days": -186.6,
+   "trigger_ratio": 27.5
+  },
+  "corr": {
+   "contemp": 0.1617,
+   "lagged": 0.0429,
+   "ratio": 3.768
+  },
+  "corr_bootstrap": {
+   "B": 1000,
+   "block": 20,
+   "contemp_ci95": [
+    0.1323,
+    0.1882
+   ],
+   "lag_ci95": [
+    0.008,
+    0.0691
+   ],
+   "ratio_ci95": [
+    2.4338,
+    14.8588
+   ],
+   "ratio_median": 3.983
+  },
+  "gap": {
+   "ln_total": 6.0472,
+   "inflation_x": 422.9,
+   "share_strict_flips": 0.973118,
+   "share_flip_neighborhood": 1.0,
+   "mean_ln_per_flip": 0.0261,
+   "mean_logbp_per_flip": 261.0
+  },
+  "shift_bp_per_flip": {
+   "honest_latency_A_over_B": 14.7,
+   "error_F_over_A": 260.7,
+   "error_G_over_C": 260.5
+  },
+  "subperiod": {
+   "split_date": "2022-03-12",
+   "first_half": {
+    "F_over_A": 27.1,
+    "ln_per_year": 0.723
+   },
+   "second_half": {
+    "F_over_A": 15.6,
+    "ln_per_year": 0.601
+   }
+  },
+  "grid": {
+   "M10_T0.0": {
+    "flips": 430,
+    "A_x": 12.52,
+    "B_x": 13.25,
+    "F_x": 242294.95,
+    "inflation_F_over_A": 19352.6,
+    "honest_shift_bp_per_flip": -1.3,
+    "error_shift_bp_per_flip": 229.5
+   },
+   "M10_T0.5": {
+    "flips": 368,
+    "A_x": 16.77,
+    "B_x": 5.8,
+    "F_x": 91041.63,
+    "inflation_F_over_A": 5428.8,
+    "honest_shift_bp_per_flip": 28.9,
+    "error_shift_bp_per_flip": 233.7
+   },
+   "M20_T0.0": {
+    "flips": 289,
+    "A_x": 8.61,
+    "B_x": 11.29,
+    "F_x": 15464.16,
+    "inflation_F_over_A": 1796.1,
+    "honest_shift_bp_per_flip": -9.4,
+    "error_shift_bp_per_flip": 259.3
+   },
+   "M20_T0.5": {
+    "flips": 232,
+    "A_x": 14.41,
+    "B_x": 10.24,
+    "F_x": 6094.94,
+    "inflation_F_over_A": 423.0,
+    "honest_shift_bp_per_flip": 14.7,
+    "error_shift_bp_per_flip": 260.7
+   },
+   "M60_T0.0": {
+    "flips": 163,
+    "A_x": 9.11,
+    "B_x": 10.61,
+    "F_x": 831.59,
+    "inflation_F_over_A": 91.3,
+    "honest_shift_bp_per_flip": -9.4,
+    "error_shift_bp_per_flip": 276.9
+   },
+   "M60_T0.5": {
+    "flips": 143,
+    "A_x": 12.91,
+    "B_x": 6.71,
+    "F_x": 398.44,
+    "inflation_F_over_A": 30.9,
+    "honest_shift_bp_per_flip": 45.8,
+    "error_shift_bp_per_flip": 239.8
+   }
+  }
+ },
+ "eth": {
+  "n_bars": 3336,
+  "first_date": "2017-08-17",
+  "last_date": "2026-10-04",
+  "source": "binance-api",
+  "valid_from_index": 109,
+  "arms": {
+   "A": {
+    "x": 16.79,
+    "cagr_pct": 36.2,
+    "sharpe": 0.88,
+    "maxdd_pct": 58.7
+   },
+   "B": {
+    "x": 15.62,
+    "cagr_pct": 35.1,
+    "sharpe": 0.87,
+    "maxdd_pct": 62.9
+   },
+   "C": {
+    "x": 16.77,
+    "cagr_pct": 36.2,
+    "sharpe": 0.88,
+    "maxdd_pct": 58.8
+   },
+   "D1": {
+    "x": 31.8,
+    "cagr_pct": 46.0,
+    "sharpe": 1.03,
+    "maxdd_pct": 41.6
+   },
+   "D2": {
+    "x": 29.67,
+    "cagr_pct": 44.9,
+    "sharpe": 1.0,
+    "maxdd_pct": 49.3
+   },
+   "F": {
+    "x": 78853.04,
+    "cagr_pct": 243.7,
+    "sharpe": 2.77,
+    "maxdd_pct": 26.9
+   },
+   "G": {
+    "x": 79145.92,
+    "cagr_pct": 243.8,
+    "sharpe": 2.77,
+    "maxdd_pct": 26.9
+   },
+   "BH": {
+    "x": 9.03,
+    "cagr_pct": 27.2,
+    "sharpe": 0.72,
+    "maxdd_pct": 94.0
+   }
+  },
+  "days_long_pct": {
+   "rolling": 29.7,
+   "D1_fullsample": 24.6,
+   "D2_hybrid": 27.0
+  },
+  "flips": {
+   "total": 222,
+   "per_year": 24.3,
+   "entries": 111,
+   "exits": 111
+  },
+  "intra_bp": {
+   "unconditional_valid": 15.6,
+   "entry_days": 433.0,
+   "exit_days": -329.6,
+   "trigger_ratio": 27.7
+  },
+  "corr": {
+   "contemp": 0.1654,
+   "lagged": 0.0383,
+   "ratio": 4.317
+  },
+  "corr_bootstrap": {
+   "B": 1000,
+   "block": 20,
+   "contemp_ci95": [
+    0.1372,
+    0.1899
+   ],
+   "lag_ci95": [
+    0.0049,
+    0.0687
+   ],
+   "ratio_ci95": [
+    2.4274,
+    18.9321
+   ],
+   "ratio_median": 4.318
+  },
+  "gap": {
+   "ln_total": 8.4548,
+   "inflation_x": 4697.3,
+   "share_strict_flips": 0.980968,
+   "share_flip_neighborhood": 1.0,
+   "mean_ln_per_flip": 0.0381,
+   "mean_logbp_per_flip": 381.0
+  },
+  "shift_bp_per_flip": {
+   "honest_latency_A_over_B": 3.3,
+   "error_F_over_A": 380.8,
+   "error_G_over_C": 381.1
+  },
+  "subperiod": {
+   "split_date": "2022-03-12",
+   "first_half": {
+    "F_over_A": 113.6,
+    "ln_per_year": 1.036
+   },
+   "second_half": {
+    "F_over_A": 41.4,
+    "ln_per_year": 0.815
+   }
+  },
+  "grid": {
+   "M10_T0.0": {
+    "flips": 454,
+    "A_x": 35.05,
+    "B_x": 7.24,
+    "F_x": 15957812.69,
+    "inflation_F_over_A": 455287.1,
+    "honest_shift_bp_per_flip": 34.7,
+    "error_shift_bp_per_flip": 287.0
+   },
+   "M10_T0.5": {
+    "flips": 356,
+    "A_x": 20.8,
+    "B_x": 23.24,
+    "F_x": 1471808.19,
+    "inflation_F_over_A": 70760.0,
+    "honest_shift_bp_per_flip": -3.1,
+    "error_shift_bp_per_flip": 313.7
+   },
+   "M20_T0.0": {
+    "flips": 296,
+    "A_x": 8.06,
+    "B_x": 13.03,
+    "F_x": 220918.24,
+    "inflation_F_over_A": 27409.2,
+    "honest_shift_bp_per_flip": -16.2,
+    "error_shift_bp_per_flip": 345.2
+   },
+   "M20_T0.5": {
+    "flips": 222,
+    "A_x": 16.79,
+    "B_x": 15.62,
+    "F_x": 78853.04,
+    "inflation_F_over_A": 4696.4,
+    "honest_shift_bp_per_flip": 3.3,
+    "error_shift_bp_per_flip": 380.8
+   },
+   "M60_T0.0": {
+    "flips": 137,
+    "A_x": 2.27,
+    "B_x": 2.75,
+    "F_x": 1005.43,
+    "inflation_F_over_A": 442.9,
+    "honest_shift_bp_per_flip": -14.0,
+    "error_shift_bp_per_flip": 444.8
+   },
+   "M60_T0.5": {
+    "flips": 161,
+    "A_x": 1.72,
+    "B_x": 2.66,
+    "F_x": 785.39,
+    "inflation_F_over_A": 456.6,
+    "honest_shift_bp_per_flip": -27.1,
+    "error_shift_bp_per_flip": 380.4
+   }
+  }
+ },
+ "purged_cv_btc": {
+  "design": "purged walk-forward selection, embargo=110 bars, grid=6 cells, train metric=C-ledger Sharpe on train-valid bars",
+  "folds": [
+   {
+    "fold": 1,
+    "test": [
+     "2019-05-25",
+     "2020-11-12"
+    ],
+    "selected": "M10_T0.5",
+    "train_sharpe": 1.69
+   },
+   {
+    "fold": 2,
+    "test": [
+     "2020-11-13",
+     "2022-05-04"
+    ],
+    "selected": "M10_T0.5",
+    "train_sharpe": 1.49
+   },
+   {
+    "fold": 3,
+    "test": [
+     "2022-05-05",
+     "2023-10-24"
+    ],
+    "selected": "M10_T0.5",
+    "train_sharpe": 1.68
+   },
+   {
+    "fold": 4,
+    "test": [
+     "2023-10-25",
+     "2025-04-14"
+    ],
+    "selected": "M10_T0.5",
+    "train_sharpe": 1.33
+   },
+   {
+    "fold": 5,
+    "test": [
+     "2025-04-15",
+     "2026-10-04"
+    ],
+    "selected": "M10_T0.5",
+    "train_sharpe": 1.32
+   }
+  ],
+  "oos_A": {
+   "x": 4.32,
+   "cagr_pct": 22.0,
+   "sharpe": 0.81,
+   "maxdd_pct": 46.7
+  },
+  "oos_F": {
+   "x": 6326.38,
+   "cagr_pct": 228.2,
+   "sharpe": 3.66,
+   "maxdd_pct": 15.7
+  },
+  "oos_inflation_x": 1464.4,
+  "oos_flips": 316,
+  "oos_error_shift_bp_per_flip": 230.7,
+  "claim": "selection-layer diagnostics (train/test Sharpe) show no anomaly; the ledger error persists at full magnitude inside every honest fold"
+ },
+ "meanrev_test2_btc": {
+  "signal": "long when 5-day return z-score(90d, ddof=1) < -1.0",
+  "arms": {
+   "A": {
+    "x": 0.35,
+    "cagr_pct": -10.9,
+    "sharpe": -0.15,
+    "maxdd_pct": 79.4
+   },
+   "C": {
+    "x": 0.34,
+    "cagr_pct": -11.0,
+    "sharpe": -0.15,
+    "maxdd_pct": 79.4
+   },
+   "F": {
+    "x": 0.0,
+    "cagr_pct": -69.3,
+    "sharpe": -3.09,
+    "maxdd_pct": 100.0
+   },
+   "G": {
+    "x": 0.0,
+    "cagr_pct": -69.3,
+    "sharpe": -3.09,
+    "maxdd_pct": 100.0
+   }
+  },
+  "inflation_F_over_A": 0.0,
+  "corr_contemp": -0.2671,
+  "corr_lagged": -0.0198,
+  "flips": 318,
+  "note": "contemporaneous correlation is NEGATIVE for reversal signals: a signed-ratio rule calibrated on momentum misfires; use |corr| or family-conditional baselines"
+ },
+ "equity_sp500": {
+  "status": "ok",
+  "source": "FRED SP500 daily close (fredgraph.csv)",
+  "window": "2017-08-17..2026-10-02",
+  "n_obs": 2294,
+  "design": "close-only: C (signal-close) vs G (unshifted same-bar); open-based arms not runnable without open prints",
+  "arms": {
+   "C": {
+    "x": 1.18,
+    "cagr_pct": 1.8,
+    "sharpe": 0.28,
+    "maxdd_pct": 18.0,
+    "cagr_calendar_pct": 1.8
+   },
+   "G": {
+    "x": 4.09,
+    "cagr_pct": 16.7,
+    "sharpe": 2.12,
+    "maxdd_pct": 7.1,
+    "cagr_calendar_pct": 16.7
+   },
+   "BH": {
+    "x": 3.18,
+    "cagr_pct": 13.5,
+    "sharpe": 0.77,
+    "maxdd_pct": 33.9,
+    "cagr_calendar_pct": 13.5
+   }
+  },
+  "inflation_G_over_C": 3.47,
+  "flips": 226,
+  "entries": 113,
+  "exits": 113,
+  "trigger_bar_bp": {
+   "entry_days": 63.6,
+   "exit_days": -46.3,
+   "unconditional_valid": 5.3
+  },
+  "corr": {
+   "contemp_close": 0.1091,
+   "lagged_close": 0.0061
+  },
+  "error_shift_bp_per_flip": 55.0
+ },
+ "v2_vs_v4": {
+  "btc": {
+   "A_x": {
+    "v2": 14.41,
+    "v4": 14.41,
+    "delta_pct": 0.0
+   },
+   "F_x": {
+    "v2": 6224.78,
+    "v4": 6094.94,
+    "delta_pct": -2.09
+   },
+   "BH_x": {
+    "v2": 19.79,
+    "v4": 20.19,
+    "delta_pct": 2.02
+   },
+   "sharpe_A": {
+    "v2": 1.01,
+    "v4": 1.01,
+    "delta_pct": 0.0
+   },
+   "sharpe_F": {
+    "v2": 2.81,
+    "v4": 2.81,
+    "delta_pct": 0.0
+   },
+   "flips": {
+    "v2": 234,
+    "v4": 232,
+    "delta_pct": -0.85
+   },
+   "inflation_main": {
+    "v2": 432.0,
+    "v4": 423.0,
+    "delta_pct": -2.08
+   },
+   "B_x": {
+    "v2": 9.17,
+    "v4": 10.24,
+    "delta_pct": 11.67
+   },
+   "C_x": {
+    "v2": 14.44,
+    "v4": 14.43,
+    "delta_pct": -0.07
+   },
+   "G_x": {
+    "v2": 6210.9,
+    "v4": 6085.07,
+    "delta_pct": -2.03
+   },
+   "corr_contemp": {
+    "v2": 0.162,
+    "v4": 0.1617,
+    "delta_pct": -0.19
+   },
+   "corr_lagged": {
+    "v2": 0.043,
+    "v4": 0.0429,
+    "delta_pct": -0.23
+   },
+   "entry_bp": {
+    "v2": 340.7,
+    "v4": 339.0,
+    "delta_pct": -0.5
+   },
+   "exit_bp": {
+    "v2": -182.5,
+    "v4": -186.6,
+    "delta_pct": -2.25
+   },
+   "uncond_bp": {
+    "v2": 12.2,
+    "v4": 12.3,
+    "delta_pct": 0.82
+   },
+   "sub1": {
+    "v2": 29.9,
+    "v4": 27.1,
+    "delta_pct": -9.36
+   },
+   "sub2": {
+    "v2": 14.4,
+    "v4": 15.6,
+    "delta_pct": 8.33
+   },
+   "D2_vs_legacy_D": {
+    "v2": 6.74,
+    "v4": 6.8,
+    "delta_pct": 0.89
+   },
+   "D1_vs_legacy_E": {
+    "v2": 14.52,
+    "v4": 14.52,
+    "delta_pct": 0.0
+   }
+  },
+  "eth": {
+   "A_x": {
+    "v2": 17.21,
+    "v4": 16.79,
+    "delta_pct": -2.44
+   },
+   "F_x": {
+    "v2": 85908.26,
+    "v4": 78853.04,
+    "delta_pct": -8.21
+   },
+   "inflation_main": {
+    "v2": 4990.3,
+    "v4": 4696.4,
+    "delta_pct": -5.89
+   },
+   "grid_max_infl": {
+    "v2": 388752.4,
+    "v4": 455287.1,
+    "delta_pct": 17.11
+   }
+  },
+  "note": "v2 values were generated by a lost script with undocumented conventions; v4 is canonical. Deltas are convention drift, not data drift."
+ },
+ "figure": {
+  "status": "skipped",
+  "reason": "matplotlib not installed"
+ }
+}
