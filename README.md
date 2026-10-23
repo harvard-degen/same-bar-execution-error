@@ -49,6 +49,8 @@ https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7654039 · DOI: 10.2139/ssrn
 
 Code (this repository, v1.0.0): [DOI 10.5281/zenodo.23590934](https://doi.org/10.5281/zenodo.23590934) · concept DOI: 10.5281/zenodo.23590933
 
+Author ORCID: [0009-0002-4400-9106](https://orcid.org/0009-0002-4400-9106)
+
 *Apex Quant Capital is the systematic-trading research brand of Saprolings Pte Ltd, Singapore.*
 
 ## License
